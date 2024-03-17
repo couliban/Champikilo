@@ -1,0 +1,22 @@
+<div class="container">
+    <mat-card class="mat-card" 
+              *ngFor="let item of menu; let itemIndex = index" 
+              [style.animation-delay]="(itemIndex > 0) ? (itemIndex*0.1+'s') : '0s'">
+        <mat-card-header>
+          <mat-card-title>{{item.name}}</mat-card-title>
+        </mat-card-header>
+        <img class="mat-card-image" mat-card-image src="../../assets/images/{{item.image}}" alt="{{item.name}}">
+        <mat-card-actions>
+          <button (click)="openDialog({
+            enterAnimationDuration: '0ms',
+            exitAnimationDuration: '0ms',
+            data: {
+                content: item.description,
+                title: item.name
+            }
+          })" mat-button>Description</button>
+          <a routerLink="/games/{{item.path}}" mat-button>JOUER</a>
+        </mat-card-actions>
+    </mat-card>
+</div>
+  

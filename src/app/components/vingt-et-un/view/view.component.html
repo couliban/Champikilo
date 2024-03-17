@@ -1,0 +1,8 @@
+<div class="view"
+    [style.border-width]="getCards().length > 0 ? '0px' : '1px'">
+    <img class="card" 
+        *ngFor="let card of getCards(); let cardIndex = index" 
+        src="{{card.image}}"
+        [class.card-n]="cardIndex > 0"
+        [ngStyle]="{'z-index': cardIndex, 'margin-top': (cardIndex*50)+'px'}">
+</div>

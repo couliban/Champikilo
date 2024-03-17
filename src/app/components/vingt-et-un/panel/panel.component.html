@@ -1,0 +1,19 @@
+<div class="panel">
+    <button mat-stroked-button 
+            [disabled]="!canDoSomething() || !canTake()"
+            (click)="draw_()"
+            [color]="canDoSomething() ? 'primary' : ''">
+        Piocher
+    </button>
+    <button mat-stroked-button 
+            [disabled]="!canDoSomething() || !canPassTurn()"
+            (click)="passTurnFrom_()"
+            [color]="canDoSomething() ? 'primary' : ''">
+        Passer
+    </button>
+    <button mat-stroked-button 
+            [disabled]="!canDoSomething() || !canPlay()"
+            (click)="play_()">
+            Jouer
+    </button>
+</div>

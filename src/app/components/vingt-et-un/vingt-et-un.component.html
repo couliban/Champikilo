@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="player1">
+        <div class="player">Player1</div>
+        <app-panel player="Player1" 
+                    [gameState]="this.gameState()" 
+                    (draw)="getCard($event)" 
+                    (passTurnFrom)="passTurnFrom($event)"
+                    (play)="play($event)"></app-panel>
+        <app-view player="Player1" [gameState]="this.gameState()"></app-view>
+    </div>
+
+    <!-- Score player 1 -->
+    <div class="score">
+        {{gameState().player1.count}}
+    </div>
+
+    <div class="board-game" >
+        <div class="game-winner">{{(winner() == 'Draw') ? "Match nul" : winner()}}</div>
+
+        <div class="game-name"
+            [class.border-player1]="gameState().turn == 'Player1'"
+            [class.border-player2]="gameState().turn == 'Player2'">21</div>
+
+        <div class="game-reset"
+             (click)="resetGame()">
+            <button mat-raised-button>Relancer la partie</button>
+        </div>
+    </div>
+
+    <!-- Score player 2 -->
+    <div class="score">
+        {{gameState().player2.count}}
+    </div>
+
+    <div class="player2">
+        <div class="player">Player2</div>
+        <app-panel player="Player2" 
+                    [gameState]="this.gameState()" 
+                    (draw)="getCard($event)" 
+                    (passTurnFrom)="passTurnFrom($event)"
+                    (play)="play($event)"></app-panel>
+        <app-view player="Player2" [gameState]="this.gameState()"></app-view>
+    </div>
+</div>
