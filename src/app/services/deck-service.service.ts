@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Deck } from '../utils/interfaces/deck.interface';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { CreateDeckResponse } from '../utils/types/create-deck-response';
 import { GetCardsResponse } from '../utils/types/get-cards-response';
 import { SuffleCardsResponse } from '../utils/types/shuffle-cards-response';
@@ -15,16 +15,22 @@ export class DeckService implements Deck {
 
   constructor(private readonly http: HttpClient) {}
 
-  createDeck(): Observable<CreateDeckResponse> {
-    return this.http.get<CreateDeckResponse>(`${this.deckURL}/new/shuffle/?deck_count=1`, { headers: { Accept: 'application/json' } }) ;
+  createDeck(): Promise<CreateDeckResponse> {
+    return firstValueFrom(
+      this.http.get<CreateDeckResponse>(`${this.deckURL}/new/shuffle/?deck_count=1`, { headers: { Accept: 'application/json' } })
+    ) 
   }
 
-  getCards(deckId: string, count: number): Observable<GetCardsResponse> {
-    return this.http.get<GetCardsResponse>(`${this.deckURL}/${deckId}/draw/?count=${count}`, { headers: { Accept: 'application/json' } });
+  getCards(deckId: string, count: number): Promise<GetCardsResponse> {
+    return firstValueFrom(
+      this.http.get<GetCardsResponse>(`${this.deckURL}/${deckId}/draw/?count=${count}`, { headers: { Accept: 'application/json' } })
+    )
   }
 
-  shuffleDeck(deckId: string): Observable<SuffleCardsResponse> {
-    return this.http.get<SuffleCardsResponse>(`${this.deckURL}/${deckId}/shuffle/?remaining=true`, { headers: { Accept: 'application/json' } });
+  shuffleDeck(deckId: string): Promise<SuffleCardsResponse> {
+    return firstValueFrom(
+      this.http.get<SuffleCardsResponse>(`${this.deckURL}/${deckId}/shuffle/?remaining=true`, { headers: { Accept: 'application/json' } })
+    )
   }
 
 

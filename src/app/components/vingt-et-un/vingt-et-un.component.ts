@@ -33,6 +33,8 @@ export class VingtEtUnComponent implements OnInit {
   private _gameState: WritableSignal<VingtEtUnGameState> = signal<VingtEtUnGameState>({...initialGameState});
   readonly gameState = computed<VingtEtUnGameState>(() => this._gameState());
 
+  // XXX ERROR : Les deck devrait être géré par un signal
+  // idem pour le gagant
   deck: DeckCards = { deckId: '', remaining: 0 };
   readonly winner = computed(() => this.defineWinner());
 
@@ -43,29 +45,29 @@ export class VingtEtUnComponent implements OnInit {
   }
 
   getNewDeck(): void {
-    this.deckService.createDeck().subscribe((value) => {
+    this.deckService.createDeck().then( deck => {
       this.deck = {
-        deckId: value.deck_id,
-        remaining: value.remaining
+        deckId: deck.deck_id,
+        remaining: deck.remaining
       }
     });
   }
 
   getCard(player: Player): void {
-    this.deckService.getCards(this.deck.deckId, 1).subscribe((value) => {
+    this.deckService.getCards(this.deck.deckId, 1).then( deck => {
       
       this._gameState.set({
         ...this.gameState(),
         player1: {
           ...this.gameState().player1,
           cards: (player == 'Player1')
-            ? [...this.gameState().player1.cards, ...value.cards]
+            ? [...this.gameState().player1.cards, ...deck.cards]
             : this.gameState().player1.cards
         },
         player2: {
           ...this.gameState().player2,
           cards: (player == 'Player2')
-            ? [...this.gameState().player2.cards, ...value.cards]
+            ? [...this.gameState().player2.cards, ...deck.cards]
             : this.gameState().player2.cards
         }
       });
