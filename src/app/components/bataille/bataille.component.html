@@ -1,1 +1,77 @@
-<p>bataille works!</p>
+<div class="container">
+    <div class="player1">
+        <div class="player">Player1</div>
+
+        <div class="panel">
+            <button mat-stroked-button
+                    [disabled]="!canPlay('Player1')"
+                    (click)="play('Player1')">
+                JOUER
+            </button>
+        </div>
+
+        <div class="view">
+            <img class="card-panel" src="../../../assets/images/Card_back.png">
+            <div class="played"
+                 [class.card-n]="gameState().player1.cardPlayed.length > 0">
+                <div class="card" 
+                     *ngFor="let card of gameState().player1.cardPlayed; let cardIndex = index"
+                    [ngStyle]="{
+                        'z-index': cardIndex, 
+                        'margin-top': (cardIndex*50)+'px',
+                        'background-image': 'url('+getImage(cardIndex, card.image, 'Player1')+')'}">
+                </div>
+            </div>
+        </div>
+
+        <div class="remaining">
+                Restant: {{gameState().player1.count}}
+        </div>
+    </div>
+
+    <div class="board-game" >
+        <div class="game-winner">{{winner()}}</div>
+
+        <div class="game-name"
+            [class.border-player1]="gameState().turn == 'Player1'"
+            [class.border-player2]="gameState().turn == 'Player2'"
+            [class.has-bataille]="gameState().hasBataille">
+            Bataille
+        </div>
+
+        <div class="game-reset"
+             (click)="resetGame()">
+            <button mat-raised-button>Relancer la partie</button>
+        </div>
+    </div>
+    
+    <div class="player2">
+        <div class="player">Player2</div>
+
+        <div class="panel">
+            <button mat-stroked-button 
+                    [disabled]="!canPlay('Player2')"
+                    (click)="play('Player2')">
+                JOUER
+            </button>
+        </div>
+
+        <div class="view">
+            <div class="played"
+                [class.card-n]="gameState().player2.cardPlayed.length > 0">
+                <div class="card" 
+                     *ngFor="let card of gameState().player2.cardPlayed; let cardIndex = index"
+                    [ngStyle]="{
+                        'z-index': cardIndex, 
+                        'margin-top': (cardIndex*50)+'px',
+                        'background-image': 'url('+getImage(cardIndex, card.image, 'Player2')+')'}">
+                </div>
+            </div>
+            <img class="card-panel" src="../../../assets/images/card-back.png">
+        </div>
+
+        <div class="remaining">
+                Restant: {{gameState().player2.count}}
+        </div>
+    </div>
+</div>

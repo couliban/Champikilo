@@ -1,5 +1,5 @@
 import { VingtEtUnGameState } from "../../utils/types/vingt-et-un-game-state";
-import { initialPlayerState } from "./initial-player-state.type";
+import { initialPlayerState } from "./initial-player-state";
 
 
 export const initialGameState: VingtEtUnGameState = {

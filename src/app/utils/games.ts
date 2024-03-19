@@ -26,6 +26,15 @@ export const games: game[] = [
                     <br><br>
                     Chaque joueur tire une ou plusieurs cartes pour s'approcher de 21, 
                     ou décide de ne pas tirer. Dès que le point obtenu dépasse 21, le joueur a perdu. 
+                    <br><br>
+                    <strong>Dans ce jeu, le nombre maximal de cartes que peut piocher chaque joueur est 6</strong>
+                    <br><br>
+                    <strong> Valeur des cartes
+                    <ul>
+                        <li>As: 11</li>
+                        <li>Le Roi, La Reine, le Valet: 1</li>
+                        <li>10, 9, ..., 2: 10, 9, ..., 2</li>
+                    </ul>
                 </p>`
     },
     {
@@ -38,9 +47,7 @@ export const games: game[] = [
                     À son tour, le joueur a le choix de jouer (c’est-à-dire de poser une carte sur le talon) 
                     soit une carte de la couleur de celle qui est en haut du talon, 
                     soit une carte de la même valeur, soit une carte joker à tout moment. 
-                    Lorsqu'un joueur ne peut pas jouer de carte, il pioche une carte et passe son tour.
-                    <br>
-                    <strong>Dans ce jeu, le nombre maximal de cartes est de 6 pour chaque joueur</strong>`
+                    Lorsqu'un joueur ne peut pas jouer de carte, il pioche une carte et passe son tour.`
     },
     {
         name: "Bataille",
@@ -55,8 +62,17 @@ export const games: game[] = [
                 - Lorsque deux joueurs posent en même temps deux cartes de même valeur il y a "bataille". 
                     Lorsqu'il y a "bataille" les joueurs tirent la carte suivante et la posent, face cachée, sur la carte précédente. 
                     Puis, ils tirent une deuxième carte qu'ils posent cette fois-ci face découverte et c'est cette dernière qui départagera les joueurs. 
-                    Celui qui la valeur la plus forte, l'importe. <br>
+                    Celui qui a la valeur la plus forte, l'emporte. <br>
                 - Le gagnant est celui qui remporte toutes les cartes du paquet <br>
+                <br><br>
+                <strong> Valeur des cartes
+                <ul>
+                    <li>As: 14</li>
+                    <li>Le Roi: 13</li>
+                    <li>La Reine: 12</li>
+                    <li>Le Valet: 11</li>
+                    <li>10, 9, ..., 2: 10, 9, ..., 2</li>
+                </ul>
             </p>`
     },
   ]

@@ -3,7 +3,7 @@ import { Player } from '../../../utils/types/player';
 import { VingtEtUnGameState } from '../../../utils/types/vingt-et-un-game-state';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { PlayerState } from '../../../utils/types/player-state';
+import { VingtEtUnPlayerState } from '../../../utils/types/vingt-et-un-player-state';
 
 @Component({
   selector: 'app-panel',
@@ -40,11 +40,11 @@ export class PanelComponent {
     this.play.emit(this.player);
   }
 
-  getPlayer(): PlayerState {
+  getPlayer(): VingtEtUnPlayerState {
     return (this.player == 'Player1') ? this.gameState.player1 : this.gameState.player2;
   }
 
-  getOpponentPlayer(): PlayerState {
+  getOpponentPlayer(): VingtEtUnPlayerState {
     return (this.player == 'Player1') ? this.gameState.player2 : this.gameState.player1;
   }
 
@@ -69,7 +69,7 @@ export class PanelComponent {
     return cards.length > 0;
   }
 
-  hasPlayed(player: PlayerState): boolean {
+  hasPlayed(player: VingtEtUnPlayerState): boolean {
     return player.hasPlayed;
   }
 

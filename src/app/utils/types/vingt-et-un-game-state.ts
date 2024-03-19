@@ -1,8 +1,8 @@
 import { Player } from "./player";
-import { PlayerState } from "./player-state";
+import { VingtEtUnPlayerState } from "./vingt-et-un-player-state";
 
 export type VingtEtUnGameState = {
   turn: Player,
-  player1: PlayerState;
-  player2: PlayerState;
+  player1: VingtEtUnPlayerState;
+  player2: VingtEtUnPlayerState;
 }

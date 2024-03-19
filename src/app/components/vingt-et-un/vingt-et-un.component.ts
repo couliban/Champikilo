@@ -9,8 +9,8 @@ import { Player } from '../../utils/types/player';
 import { ViewComponent } from './view/view.component';
 import { PanelComponent } from './panel/panel.component';
 import { GameWinner } from '../../utils/types/game-winner';
-import { initialGameState } from './initial-game-state.type';
-import { PlayerState } from '../../utils/types/player-state';
+import { initialGameState } from './initial-game-state';
+import { VingtEtUnPlayerState } from '../../utils/types/vingt-et-un-player-state';
 
 @Component({
   selector: 'app-vingt-et-un',
@@ -74,7 +74,7 @@ export class VingtEtUnComponent implements OnInit {
     this.passTurnFrom(player);
   }
   
-  getOpponentPlayer(): PlayerState {
+  getOpponentPlayer(): VingtEtUnPlayerState {
     return (this.gameState().turn == 'Player1') ? this.gameState().player2 : this.gameState().player1;
   }
 
@@ -147,8 +147,8 @@ export class VingtEtUnComponent implements OnInit {
     return winner;
   }
 
-  resetGame() {
-    this._gameState.set({...initialGameState})
+  resetGame(): void {
+    this._gameState.set({...initialGameState});
   }
 
 

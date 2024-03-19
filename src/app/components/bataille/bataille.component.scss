@@ -1,0 +1,113 @@
+.container {
+    width: 90vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 400px;
+}
+
+.player {
+    font-size: x-large;
+    font-weight: 700;
+    font-family: "Tillana", system-ui;
+    font-style: normal;
+    margin-bottom: 30px;
+}
+
+.player1, .player2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.view {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-panel {
+    margin-top: 5px;
+    width: 170px;
+    min-height: 236px;
+    border: 1px solid rgb(172, 171, 171);
+    border-radius: 20px;
+}
+
+.played {
+    margin-top: 5px;
+    width: 130px;
+    height: 196px;
+    border: 1px solid rgb(172, 171, 171);
+    border-radius: 20px;
+}
+
+.played .card {
+    width: 130px;
+    height: 166px;
+    position: absolute;
+    background-position: center;
+    background-size: 130px 166px;
+}
+
+.board-game {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.game-winner {
+    font-size: larger;
+    font-weight: 500;
+    font-family: "Tillana", system-ui;
+    font-style: normal;
+}
+
+.game-name {
+    display: flex;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: 800;
+    font-family: "Tillana", system-ui;
+    font-style: normal;
+    border: 1px solid rgb(192, 192, 192);
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+.panel {
+    margin-bottom: 20px;
+}
+
+.card-n {
+    border-width: 0px;
+}
+
+.border-player1 {
+    border-left: 3px solid blue;
+}
+
+.border-player2 {
+    border-right: 3px solid blue;
+}
+
+.has-bataille {
+    color: rgb(230, 0, 0);
+}
+
+.remaining {
+    font-size: large;
+    font-weight: 500;
+    font-family: "Tillana", system-ui;
+    font-style: normal;
+    margin-top: 50px;
+}
