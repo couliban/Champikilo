@@ -27,8 +27,8 @@ import { GameWinner } from '../../utils/types/game-winner';
   ],
 })
 export class BatailleComponent implements OnInit {
-  private _gameState = signal<BatailleGameState>({...initialGameState});
-  readonly gameState = computed<BatailleGameState>(() => this._gameState());
+  private _gameState = signal<BatailleGameState>({...initialGameState})
+  readonly gameState = this._gameState.asReadonly()
 
   readonly winner = computed(() => this.defineWinner());
 
@@ -38,27 +38,28 @@ export class BatailleComponent implements OnInit {
       this.initParty();
   }
 
-  initParty(): void {
+  async initParty(): Promise<void> {
 
-    this.deckService.createDeck().pipe(
-      mergeMap((value) => {
-        return this.deckService.getCards(value.deck_id, 52);
-      })
-    ).subscribe((value) => {
-      const gs = {...this.gameState()};
+    const deck = await this.deckService.createDeck();
+    const cardsResponse = await this.deckService.getCards(deck.deck_id, 52);
+    
+    const gs = {...this.gameState()};
 
-      gs.player1.cards = [...value.cards.slice(0, 26)];
-      gs.player2.cards = [...value.cards.slice(-26)];
-      this._gameState.set({...gs});
-    });
+    gs.player1.cards = [...cardsResponse.cards.slice(0, 26)];
+    gs.player2.cards = [...cardsResponse.cards.slice(-26)];
+
+    this._gameState.set({ ...gs });
+    
   }  
 
+  /**
+   * XXX ERROR : Cette méthode a un problème de synchronisation !
+   */
   getCards(deckId: string, count: number): Card[] {
     let cards: Card[] = [];
-    this.deckService.getCards(deckId, count).subscribe((value) => {
-      cards = value.cards;
+    this.deckService.getCards(deckId, count).then( cardResponse => {
+      cards = cardResponse.cards;
     })
-
     return cards;
   }
 
@@ -84,6 +85,7 @@ export class BatailleComponent implements OnInit {
 
     this._gameState.set({...gs});
 
+    // XXX ERROR : Mieux en utilisant les observables !
     setTimeout(() => {
       this.updateGame();
     }, 2600);
@@ -95,6 +97,7 @@ export class BatailleComponent implements OnInit {
     this._gameState.update(gs => ({ ...gs, turn: (player == 'Player1') ? 'Player2' : 'Player1' }));
   }
 
+  // XXX ERROR : très long... c'est suspect !
   updateGame(): void {
     const gs = this.gameState();
     if (gs.player1.cardPlayed.length > 0 && gs.player2.cardPlayed.length > 0) {
@@ -124,6 +127,7 @@ export class BatailleComponent implements OnInit {
     this._gameState.set({...gs});
   }
 
+  // XXX ERROR : Le typage des cartes devrait pouvoir être amélioré
   getCardValue(value: string): number {
     const onePointCards = ["KING","QUEEN", "JACK"];
     if (value == "ACE") value = "14";
