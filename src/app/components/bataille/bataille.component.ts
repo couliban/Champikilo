@@ -158,7 +158,7 @@ export class BatailleComponent implements OnInit {
   }
 
   getImage(index:number, imageUrl: string, player: Player): string {
-    const localImage = player == 'Player1' ? '/assets/images/Card_back.png' : '/assets/images/card-back.png';
+    const localImage = player == 'Player1' ? 'assets/images/Card_back.png' : 'assets/images/card-back.png';
     return index % 2 == 0 ? imageUrl : localImage;
   }
 
