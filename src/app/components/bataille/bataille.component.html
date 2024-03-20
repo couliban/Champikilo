@@ -11,7 +11,7 @@
         </div>
 
         <div class="view">
-            <img class="card-panel" src="assets/images/Card_back.png">
+            <img class="card-panel" [src]="cardBackP1">
             <div class="played"
                  [class.card-n]="gameState().player1.cardPlayed.length > 0">
                 <div class="card" 
@@ -67,7 +67,7 @@
                         'background-image': 'url('+getImage(cardIndex, card.image, 'Player2')+')'}">
                 </div>
             </div>
-            <img class="card-panel" src="assets/images/card-back.png">
+            <img class="card-panel" [src]="cardBackP2">
         </div>
 
         <div class="remaining">

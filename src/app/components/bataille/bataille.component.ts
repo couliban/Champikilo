@@ -10,6 +10,7 @@ import { Player } from '../../utils/types/player';
 import { BataillePlayerState } from '../../utils/types/bataille-player-state';
 import { mergeMap } from 'rxjs';
 import { GameWinner } from '../../utils/types/game-winner';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-bataille',
@@ -157,8 +158,11 @@ export class BatailleComponent implements OnInit {
     return player == this.gameState().turn;
   }
 
+  readonly cardBackP1 = `${environment.assets}/images/Card_back.png`
+  readonly cardBackP2 = `${environment.assets}/images/card-back.png`
+
   getImage(index:number, imageUrl: string, player: Player): string {
-    const localImage = player == 'Player1' ? 'assets/images/Card_back.png' : 'assets/images/card-back.png';
+    const localImage = player == 'Player1' ? this.cardBackP1 : this.cardBackP2;
     return index % 2 == 0 ? imageUrl : localImage;
   }
 
