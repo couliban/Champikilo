@@ -33,7 +33,7 @@ export class HomeComponent {
   readonly menu = games;
   
   imageURL(item: Game): string {
-    return `${environment.assets}/images/${item.image}`;
+    return `./assets/images/${item.image}`;
   }
 
   constructor(readonly dialog: MatDialog) {}

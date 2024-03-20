@@ -1,3 +1,3 @@
 export const environment = {
-    assets: "/assets",
+    // assets: "/assets",
 };
