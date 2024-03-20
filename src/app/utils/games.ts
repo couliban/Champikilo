@@ -3,7 +3,7 @@ import { VingtEtUnComponent } from "../components/vingt-et-un/vingt-et-un.compon
 import { HuitAmericainsComponent } from "../components/huit-americains/huit-americains.component"
 import { BatailleComponent } from "../components/bataille/bataille.component"
 
-type game = {
+export type Game = {
     name: string,
     path: string,
     component?: Type<any>,
@@ -11,7 +11,7 @@ type game = {
     description?: string;
 }
 
-export const games: game[] = [
+export const games: Game[] = [
     {
         name: "Vingt-et-un",
         path: "Vingt-et-un",
